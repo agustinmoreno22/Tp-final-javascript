@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -100,7 +101,7 @@ main {
 
 .modal-content {
     background-color: rgb(3, 45, 6);
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
@@ -120,31 +121,3 @@ main {
     text-decoration: none;
     cursor: pointer;
 }
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin: 10px 0 5px;
-}
-
-input {
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-}
-
-button[type="submit"] {
-    background-color: #333;
-    color: rgb(255, 255, 255);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-body{
-    background-color: #bfbebe;
-}
-
