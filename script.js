@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const product = { id, name, price };
             addToCart(product);
+            Swal.fire({
+                icon: 'success',
+                title: 'Agregado al carrito',
+                text: `${name} se ha agregado al carrito.`,
+                showConfirmButton: false,
+                timer: 1500
+            });
         });
     });
 
@@ -27,7 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkoutButton.addEventListener('click', () => {
         if (cart.length === 0) {
-            alert('El carrito está vacío');
+            Swal.fire({
+                icon: 'error',
+                title: 'Carrito vacío',
+                text: 'El carrito está vacío. Agrega productos antes de continuar.',
+                confirmButtonText: 'OK'
+            });
             return;
         }
         checkoutModal.style.display = 'block';
@@ -58,10 +70,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         console.log('Datos del usuario:', userData);
-        alert('Compra finalizada. Gracias por su compra, ' + name + '!');
-
-        clearCart();
-        checkoutModal.style.display = 'none';
+        
+        Swal.fire({
+            icon: 'success',
+            title: 'Compra finalizada',
+            text: `Gracias por su compra, ${name}!`,
+            showConfirmButton: false,
+            timer: 3000,
+            willClose: () => {
+                clearCart();
+                checkoutModal.style.display = 'none';
+            }
+        });
     });
 
     function addToCart(product) {
@@ -82,7 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Eliminar';
-            removeButton.addEventListener('click', () => removeFromCart(index));
+            removeButton.addEventListener('click', () => {
+                removeFromCart(index);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Producto eliminado',
+                    text: `${item.name} se ha eliminado del carrito.`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
             li.appendChild(removeButton);
             cartItems.appendChild(li);
             total += item.price;
